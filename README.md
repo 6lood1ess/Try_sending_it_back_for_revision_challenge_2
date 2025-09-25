@@ -1,0 +1,2 @@
+# Try_sending_it_back_for_revision_challenge_2
+Прикладная информатика
