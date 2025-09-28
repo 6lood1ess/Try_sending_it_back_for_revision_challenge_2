@@ -1,7 +1,7 @@
 /*************************
  * Автор: Захаров Никита *
  * Вариант: 6            *
- * ***********************/
+ * ********************* */
 
 #include <iostream>
 #include <cmath>
@@ -10,23 +10,36 @@ using namespace std;
 
 int main() {
     
-  const double T = 1873.0;
+  double tKelvins;
+  double concentrationSi = 0.025; //Концентрация кремния
+  double contentO; //Содержание кислорода
+  
+  cout << "Введите температуру стали в кельвинах: ";
+  cin >> tKelvins;
 
-  // Массив концентраций кремния [Si] в процентах
-  double Si_values[] = {0.025, 0.05, 0.075, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7};
-
-  cout << "T = " << T << " K\n";
+  cout << "T = " << tKelvins << " K\n";
   cout << "Si (%)\tO (%)\n";
 
-  for (int i = 0; i < 10; ++i) {      
-    double Si = Si_values[i];
-    
-    double exponent = (-31000.0 / T) + 12.152;
-    
-    double O = sqrt( pow(10.0, exponent) / Si );
-    
-    cout << Si << "\t" << O << endl;    
-    }
+  //Объявляем степень в виде отдельной переменной
+  double exponent;
+  exponent = (-31000.0 / tKelvins) + 12.152;
 
+  //Ниже с помощью циклов рассчитывается содержание кислорода и результаты выводятся
+  //на экран в соответсвии с концентрацией кремния (концентрация постепенно увеличивается)
+  while (concentrationSi < 0.1) {
+    contentO = sqrt(pow(10.0, exponent) / concentrationSi);
+    
+    cout << concentrationSi << "\t" << contentO << endl;
+    
+    concentrationSi = concentrationSi + 0.025;    
+    }
+    
+  do {
+    contentO = sqrt(pow(10.0, exponent) / concentrationSi);
+    
+    cout << concentrationSi << "\t" << contentO << endl;
+    
+    concentrationSi = concentrationSi + 0.1; } while (concentrationSi < 0.71);
+    
   return 0;
 }
