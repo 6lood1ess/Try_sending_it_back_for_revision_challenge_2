@@ -22,9 +22,12 @@ int main() {
   
   //Рассчитываем степень отдельно для формулы нахождения содержания кислорода
   double exponent;
-  exponent = (-31000.0 / tKelvins) + 12.152;
+  exponent = -31000.0 / tKelvins + 12.152;
+
+  double max1ConcentrationSi = 0.1; //Максимальная концентрация кремния для первого цикла
+  double max2ConcentrationSi = 0.71; //Максимальная концентрация кремния для второго цикла
   
-  while (concentrationSi < 0.1) {
+  while (concentrationSi < max1ConcentrationSi) {
     contentO = sqrt(pow(10.0, exponent) / concentrationSi);
     
     cout << concentrationSi << "\t" << contentO << endl;
@@ -39,7 +42,8 @@ int main() {
     cout << concentrationSi << "\t" << contentO << endl;
     
     //Шаг концентрации кремния: 0.1
-    concentrationSi = concentrationSi + 0.1; } while (concentrationSi < 0.71);
+    concentrationSi = concentrationSi + 0.1;
+  } while (concentrationSi < max2ConcentrationSi);
     
   return 0;
 }
